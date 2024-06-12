@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sim ou Não</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f4f9;
+            text-align: center;
+        }
+        h1 {
+            color: #ff85a2;
+        }
+        button {
+            background-color: #ff85a2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #sim {
+            background-color: #85e085;
+        }
+        #nao {
+            background-color: #ff6666;
+        }
+        button:hover {
+            background-color: #ff6b8b;
+        }
+        #resposta {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .coracao {
+            color: #ff85a2;
+            font-size: 24px;
+            margin-left: 5px;
+        }
+        .coracao-partido {
+            color: #ff85a2;
+            font-size: 24px;
+            margin-left: 5px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Você me ama?</h1>
+    <button id="sim" onclick="responder('sim')">Sim <span class="coracao">❤️</span></button>
+    <button id="nao" onclick="responder('nao')">Não <span class="coracao-partido">💔</span></button>
+    <p id="resposta"></p>
+    <script>
+        let tamanhoSim = 16;
+        let mensagens = [
+            'Por que você não me ama?',
+            'Você tem algo contra mim?',
+            'O que posso fazer para te conquistar?',
+            'Diga-me, por favor, por que não me ama?'
+        ];
+
+        function posicionarNao() {
+            let nao = document.getElementById('nao');
+            let body = document.body;
+            let left = Math.random() * (body.clientWidth - nao.offsetWidth);
+            let top = Math.random() * (body.clientHeight - nao.offsetHeight);
+            nao.style.position = 'absolute';
+            nao.style.left = left + 'px';
+            nao.style.top = top + 'px';
+        }
+
+        function responder(acao) {
+            if (acao === 'sim') {
+                document.getElementById('resposta').innerHTML = 'Obrigado por me amar! Eu tambem te amo Gabs ❤️';
+            } else if (acao === 'nao') {
+                document.getElementById('resposta').innerHTML = mensagens[Math.floor(Math.random() * mensagens.length)];
+                tamanhoSim += 2;
+                document.getElementById('sim').style.fontSize = tamanhoSim + 'px';
+                posicionarNao();
+            }
+        }
+
+        posicionarNao(); // Posicionar o botão "Não" aleatoriamente ao carregar a página
+    </script>
+</body>
+</html>
